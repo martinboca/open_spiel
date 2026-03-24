@@ -482,8 +482,11 @@ def sweep_pi_vs_epsilon(payoff_tables,
   else:
     num_profiles = utils.get_num_profiles(num_strats_per_population)
 
-  assert (strat_labels is None or isinstance(strat_labels, dict)
-          or (len(strat_labels) == num_profiles))
+  if not (strat_labels is None or isinstance(strat_labels, dict)
+          or (len(strat_labels) == num_profiles)):
+    raise ValueError(
+        'strat_labels must be None, a dict, or a list of length num_profiles'
+        ' ({}). Got length {}.'.format(num_profiles, len(strat_labels)))
 
   pi_list = np.empty((num_profiles, 0))
   pi, alpha, m = None, None, None  # Unused in infinite-alpha regime
@@ -610,8 +613,11 @@ def sweep_pi_vs_alpha(payoff_tables,
   else:
     num_profiles = utils.get_num_profiles(num_strats_per_population)
 
-  assert (strat_labels is None or isinstance(strat_labels, dict)
-          or (len(strat_labels) == num_profiles))
+  if not (strat_labels is None or isinstance(strat_labels, dict)
+          or (len(strat_labels) == num_profiles)):
+    raise ValueError(
+        'strat_labels must be None, a dict, or a list of length num_profiles'
+        ' ({}). Got length {}.'.format(num_profiles, len(strat_labels)))
 
   pi_list = np.empty((num_profiles, 0))
   alpha_list = []
